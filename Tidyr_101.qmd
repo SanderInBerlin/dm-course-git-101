@@ -25,5 +25,8 @@ ggplot(EuStockMarkets, aes(y=DAX, x=time(EuStockMarkets))) +
 
 ```{r}
 #| message: false
+```{r}
+EuStockMarkets <-
+  EuStockMarkets|> as_tibble() |>mutate(date = time(EuStockMarkets))
 ```
 
