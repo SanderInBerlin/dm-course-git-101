@@ -1,0 +1,29 @@
+---
+title: "Tydir 101"
+author: "Sander Beerepoot"
+format: html
+---
+
+```{r}
+#| message: false
+here::i_am("dm-course-git-101.Rproj")
+library(here)
+```
+
+```{r}
+data("EuStockMarkets")
+```
+
+```{r}
+library(ggplot2)
+```
+
+```{r}
+ggplot(EuStockMarkets, aes(y=DAX, x=time(EuStockMarkets))) +
+  geom_line()
+```
+
+```{r}
+#| message: false
+```
+
