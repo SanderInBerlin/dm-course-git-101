@@ -40,4 +40,11 @@ ggplot(EuStockMarkets, aes(x=date, y=CAC)) +
   geom_line(colour = 'steelblue') +
   geom_line(mapping=aes(y=DAX), colour='salmon')
 ```
+```{r}
+EuStockMarkets |>
+  pivot_longer(!date, names_to = "index") |>
+  ggplot(aes(x=date, y=value,colour = index))+ 
+  geom_line()
+
+```
 
