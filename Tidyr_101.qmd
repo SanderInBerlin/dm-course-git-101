@@ -25,6 +25,11 @@ ggplot(EuStockMarkets, aes(y=DAX, x=time(EuStockMarkets))) +
 
 ```{r}
 #| message: false
+library(dplyr)
+library(tidyr)
+```
+
+
 ```{r}
 EuStockMarkets <-
   EuStockMarkets|> as_tibble() |>mutate(date = time(EuStockMarkets))
@@ -40,11 +45,32 @@ ggplot(EuStockMarkets, aes(x=date, y=CAC)) +
   geom_line(colour = 'steelblue') +
   geom_line(mapping=aes(y=DAX), colour='salmon')
 ```
+
+```{r}
+EuStockMarkets |>
+  pivot_longer(!date, names_to = "index") +
+  
+```
+
+
 ```{r}
 EuStockMarkets |>
   pivot_longer(!date, names_to = "index") |>
   ggplot(aes(x=date, y=value,colour = index))+ 
   geom_line()
 
+```
+
+```{r}
+EuStockMarkets |>
+  pivot_longer(!date, names_to = "index") |>
+  ggplot(aes(x=date, y=value, colour=index)) +
+  geom_line()
+```
+```{r}
+EuStockMarkets |>
+  pivot_longer(DAX | SMI) |>
+  slice_head(n=10) |>
+  knitr::kable()
 ```
 
